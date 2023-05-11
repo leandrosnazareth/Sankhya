@@ -1,0 +1,62 @@
+version: '3.7'
+services:
+  db:
+    image: lughconsultoria/skw-database2:latest
+    ports:
+      - "1521:1521"
+    networks:
+      - backend
+    shm_size: '1512mb'
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 3000M
+        reservations:
+          cpus: '1.0'
+          memory: 2000M
+
+
+
+
+  wildfly:
+    image: sankhya-w:${VERSION_SNKW}
+    build:
+      dockerfile: Dockerfile
+      context: docker/
+      args:
+        - VERSION_SNKW=${VERSION_SNKW}
+    ports:
+      - "8080:8080"
+      - "8181:8181"
+      - "8787:8787"
+      - "35729:35729"
+    volumes:
+      - ./build/dist/:/home/sankhya/wildfly/standalone/deployments/sankhyaw.ear/projeto
+      - ./build/classes/kotlin/main/:/home/sankhya/extra_class_path
+    user: "1000:1000"
+    networks:
+      - backend
+      #- CHAVE_DESENVOLVIMENTO
+      #- CI_COMMIT_REF_NAME
+    depends_on:
+      - db
+    env_file:
+      - .env
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+    command: ["wait-for-it.sh", "db:1521", "--", "start"]
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 3000M
+        reservations:
+          cpus: '1.0'
+          memory: 2000M
+networks:
+  backend:
+    driver: bridge

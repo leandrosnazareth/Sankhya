@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://backend.sankhyatec.mgcloud.net.br/files/metadados.xsd"
+           xsi:schemaLocation="http://backend.sankhyatec.mgcloud.net.br/files/metadados.xsd">
+    <controls>
+        <control resourceId="br.com.sankhya.bh.BhExemploTela" contexto=":name">
+            <description><![CDATA[(BH) Tela de Exemplo]]></description>
+            <url><![CDATA[${dynaform:BhExemploTela}]]></url>
+        </control>
+    </controls>
+    <controlRelations>
+        <ctrlRelationship fromCtrl="4019" toCtrl="br.com.sankhya.bh.BhExemploTela"/>
+    </controlRelations>
+</metadados>
