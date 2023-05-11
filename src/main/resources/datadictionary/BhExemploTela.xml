@@ -1,0 +1,47 @@
+<metadados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://backend.sankhyatec.mgcloud.net.br/files/metadados.xsd"
+           xsi:schemaLocation="http://backend.sankhyatec.mgcloud.net.br/files/metadados.xsd">
+    <table name="BH_EXEMPLO_TELA" sequenceType="A" sequenceField="SEQUENCIA">
+        <description><![CDATA[(BH) Tela de Exemplo]]></description>
+        <primaryKey>
+            <field name="SEQUENCIA"/>
+        </primaryKey>
+        <instances>
+            <instance name="BhExemploTela">
+                <description><![CDATA[(BH) Tela de Exemplo]]></description>
+                <relationShip>
+                    <relation entityName="Empresa">
+                        <fields>
+                            <field localName="CODEMP" targetName="CODEMP"/>
+                        </fields>
+                    </relation>
+                </relationShip>
+            </instance>
+        </instances>
+        <fields>
+            <field name="SEQUENCIA" dataType="I" allowSearch="S" order="0" nullable="N">
+                <description><![CDATA[Número Uníco]]></description>
+            </field>
+            <field name="CODEMP" dataType="M" allowSearch="S" order="1">
+                <description><![CDATA[Empresa]]></description>
+            </field>
+            <field name="DESCRICAO" dataType="S" tamanho="64" allowSearch="S" order="2">
+                <description><![CDATA[Descrição]]></description>
+            </field>
+            <field name="ATIVO" dataType="S" tamanho="1" order="2" nullable="N" defaultValue="S">
+                <description><![CDATA[Ativo ?]]></description>
+                <fieldOptions>
+                    <option value="N"><![CDATA[Não]]></option>
+                    <option value="S"><![CDATA[Sim]]></option>
+                </fieldOptions>
+            </field>
+            <field name="DHTESTE" dataType="H" order="3">
+                <description><![CDATA[Data TESTE]]></description>
+                <properties>
+                    <prop name="UITabName"><![CDATA[Datas]]></prop>
+                    <prop name="readOnly"><![CDATA[S]]></prop>
+                </properties>
+            </field>
+        </fields>
+    </table>
+</metadados>
